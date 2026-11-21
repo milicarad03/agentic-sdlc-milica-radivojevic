@@ -1,0 +1,28 @@
+@startuml deployment
+
+skinparam nodeBackgroundColor #f5f5f5
+skinparam nodeBorderColor #888888
+skinparam componentBackgroundColor #dae8fc
+skinparam componentBorderColor #6c8ebf
+skinparam arrowThickness 1.5
+skinparam padding 6
+
+title Deployment diagram for Mars Rover System
+
+node "Local Computer" as machine {
+
+    node "Python Runtime" as python {
+
+        component "Mars Rover CLI" as cli {
+            component "Mission Controller" as mc
+            component "Rover" as rover
+            component "Map" as map
+        }
+    }
+}
+
+actor User
+
+User --> cli : runs via command line
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml command-processing-sequence
+
+skinparam sequenceArrowThickness 2
+skinparam participantPadding 20
+skinparam boxPadding 10
+
+title Mars Rover — Command Processing Sequence
+
+actor User
+participant "Mission Controller" as MC
+participant "Rover" as R
+participant "Map" as M
+
+User -> MC : submit(initial_position, orientation, obstacle_map, commands)
+MC -> R : initialise(initial_position, orientation)
+MC -> M : initialise(obstacle_map)
+
+loop for each command in sequence
+
+    alt move-forward command
+
+        MC -> R : calculate_next_position()
+        R --> MC : next_position
+
+        MC -> M : is_obstacle(next_position)
+        M --> MC : is_blocked
+
+        alt position is clear (not is_blocked)
+            MC -> R : move()
+            R --> MC : ok
+        else position is blocked (is_blocked)
+            note over MC : Movement skipped.\nRover position unchanged.\nProcessing continues.
+        end
+
+    else rotation command (left or right)
+
+        MC -> R : rotate(direction)
+        R --> MC : ok
+        note over MC : No Map query needed.\nRotation does not change position.
+
+    end
+
+end
+
+MC -> R : get_position_and_orientation()
+R --> MC : position, orientation
+MC --> User : result(position, orientation)
+
+@enduml

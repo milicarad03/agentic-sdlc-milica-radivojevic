@@ -1,0 +1,25 @@
+@startuml c4-component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+left to right direction
+skinparam ranksep 160
+skinparam nodesep 60
+
+title Component diagram for Mars Rover CLI
+
+Person(user, "User", "Defines the scenario and submits commands")
+
+Container_Boundary(cli, "Mars Rover CLI") {
+    Component(mission_controller, "Mission Controller", "Python", "Receives and parses user input. Coordinates command execution. Consults Map before allowing forward movement. Returns the resulting rover state.")
+    Component(rover, "Rover", "Python", "Maintains current position and orientation. Calculates potential next position for move-forward commands. Performs permitted movements. Handles rotation commands.")
+    Component(map, "Map", "Python", "Stores obstacle locations. Answers queries about whether a given position is occupied by an obstacle.")
+}
+
+Rel(user, mission_controller, "Submits start position, map and commands", "CLI")
+Rel(mission_controller, user, "Returns final position and orientation", "CLI")
+Rel(mission_controller, rover, "Requests next position calculation, applies permitted moves and rotations")
+Rel(mission_controller, map, "Queries obstacle occupancy for target position")
+
+SHOW_LEGEND()
+
+@enduml
