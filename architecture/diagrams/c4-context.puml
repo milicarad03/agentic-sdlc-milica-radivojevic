@@ -1,0 +1,20 @@
+@startuml c4-context
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+left to right direction
+skinparam ranksep 160
+skinparam nodesep 60
+
+title System Context diagram for Mars Rover System
+
+Person(user, "User", "Defines the scenario and submits commands")
+
+System(rover, "Mars Rover System", "Simulates rover movement on a map with obstacles")
+
+Rel(user, rover, "Submits start position, map and commands", "CLI")
+Rel(rover, user, "Returns final position and direction", "CLI")
+
+SHOW_LEGEND()
+
+@enduml
