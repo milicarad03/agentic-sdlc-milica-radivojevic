@@ -4,7 +4,7 @@
 
 **Domain:** MISSION
 **Priority:** Core — Pareto 20%
-**Status:** Draft — Manual Exercise
+**Status:** Complete (Approved) — Manual Exercise
 **Architecture Components:** Mission Controller, Rover, Map
 
 ### Original User Story
@@ -307,7 +307,7 @@ This is one of the two core stories selected for Module 3. The remaining support
 
 **Domain:** MISSION
 **Priority:** Core — Pareto 25%
-**Status:** Draft — Module 3
+**Status:** Complete (Approved) — Module 3
 **Architecture Components:** Mission Controller, Rover, Map
 
 ### Original User Story

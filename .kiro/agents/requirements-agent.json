@@ -16,6 +16,13 @@
           "./**"
         ],
         "effect": "allow"
+      },
+      {
+        "capability": "fs_write",
+        "match": [
+          "docs/user-stories/**"
+        ],
+        "effect": "allow"
       }
     ]
   },
